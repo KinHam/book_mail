@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import getImg from '../utils/imgUtils'
+console.info('getImg',getImg)
 defineProps<{ msg: string }>()
 
 const count = ref(0)
 </script>
 
 <template>
+  <img :src="getImg('白夜行.png')" alt="">
   <h1>{{ msg }}</h1>
 
   <div class="card">

@@ -2,7 +2,8 @@ import { defineConfig,CommonServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import fs from 'fs' 
 import dotenv,{DotenvParseOutput} from 'dotenv'
-import './src/declare_/myenv'
+// import './src/declare_/myenv'
+// import './src/declare_/myenv/myenv.d.ts'
 // https://vitejs.dev/config/
 
 export default defineConfig((env)=>{
@@ -13,11 +14,11 @@ export default defineConfig((env)=>{
   const envMap:DotenvParseOutput = dotenv.parse(fileData)
 
   let server:CommonServerOptions
-  
+
   if(env.mode === 'development'){
      server = {
       host:envMap.VITE_HOST,
-      port:envMap.VITE_PORT,
+      // port:envMap.VITE_PORT,
       proxy:{
         [envMap.VITE_BASE_URL]:{
           target:envMap.VITE_PROXY_DOMAIN
@@ -28,13 +29,13 @@ export default defineConfig((env)=>{
   }else if(env.mode === 'production'){
     server = {
       host:envMap.VITE_HOST,
-      port:envMap.VITE_PORT,
+      // port:envMap.VITE_PORT,
     }
     console.info('生产环境')
   }
   return {
     base:'/book_mail',
-    server,
+    // server,
     plugins: [vue()],
   }
 })
